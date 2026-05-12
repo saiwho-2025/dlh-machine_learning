@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
+"""Module to slice a specific list into multiple sub-arrays"""
 
-# Slicing a matrix using list comprehension for column extraction
-C = [[j + i * 10 for j in range(10)] for i in range(5)]
-arr1 = C[0:1]
-arr2 = C[0:4]
-arr3 = [row[3:7] for row in C]
+
+arr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+arr1, arr2, arr3 = arr[:2], arr[-5:], arr[1:6]
 print(arr1, arr2, arr3, sep="\n")
