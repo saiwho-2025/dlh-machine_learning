@@ -2,6 +2,9 @@
 """Module to slice a specific list into multiple sub-arrays"""
 
 
-arr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+arr = [9, 7, 2, 3, 9, 4, 1, 0, 3]
 arr1, arr2, arr3 = arr[:2], arr[-5:], arr[1:6]
-print(arr1, arr2, arr3, sep="\n")
+print(f"The first two numbers of the array are: {arr1}")
+print(f"The last five numbers of the array are: {arr2}")
+print(f"The 2nd through 6th numbers of the array are: {arr3}")
+
