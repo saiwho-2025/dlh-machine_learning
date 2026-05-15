@@ -7,6 +7,7 @@ updates the size, and prints it again.
 
 
 def matrix_shape(matrix):
+    """Returns the shape of a matrix as a list of dimensions."""
     shape = []
     while isinstance(matrix, list):
         shape.append(len(matrix))
