@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""This module prints the size of a square.
-
-It imports the Square class, creates an instance, prints its size,
-updates the size, and prints it again.
-"""
+"""This module prints the size data of a square."""
 
 
 def matrix_shape(matrix):
