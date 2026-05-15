@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+matrix = [[1, 3, 9, 4, 5, 8], [2, 4, 7, 3, 4, 0], [0, 3, 4, 6, 1, 5]]
 the_middle = []
 for row in matrix:
     the_middle.append(row[2:4])
