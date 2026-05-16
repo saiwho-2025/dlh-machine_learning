@@ -3,7 +3,7 @@
 
 
 def add_arrays(arr1, arr2):
-    # check if the lengths are the same
+    """ check if the lengths are the same then add them element-wisely"""
     if len(arr1) != len(arr2):
         return None
 
