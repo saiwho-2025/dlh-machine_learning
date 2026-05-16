@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """matrix dot multiplication"""
+
+
 def mat_mul(mat1, mat2):
     # Get dimensions
     rows1 = len(mat1)
