@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""matrix dot multiplication"""
 def mat_mul(mat1, mat2):
     # Get dimensions
     rows1 = len(mat1)
@@ -6,7 +7,7 @@ def mat_mul(mat1, mat2):
     rows2 = len(mat2)
     cols2 = len(mat2[0])
 
-    # Rule: columns of mat1 must equal rows of mat2
+    # Rule: number of columns of mat1 must equal rows of mat2
     if cols1 != rows2:
         return None
 
