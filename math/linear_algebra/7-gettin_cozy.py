@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """concatenate 2D matrices"""
 
+
 def cat_matrices2D(mat1, mat2, axis=0):
     """concatenate 2D matrices along a specified axis"""
     # Handle Row Concatenation (Stacking vertically)
