@@ -6,4 +6,4 @@ import numpy as np
 
 def np_transpose(matrix):
     """Transpose a matrix."""
-    return np.array(matrix).T
+    return [list(row) for row in zip(*matrix)]
