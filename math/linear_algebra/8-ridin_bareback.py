@@ -3,6 +3,7 @@
 
 
 def mat_mul(mat1, mat2):
+    """returns the product of 2 matrices"""
     # Get dimensions
     rows1 = len(mat1)
     cols1 = len(mat1[0])
