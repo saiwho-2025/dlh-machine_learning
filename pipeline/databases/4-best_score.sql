@@ -1,4 +1,5 @@
--- list all records with a score>=10 in the table second_table
-SELECT * FROM second_table WHERE score >= 10;
+-- List records with score greater than or equal to 10
+SELECT score, name
+FROM second_table
+WHERE score >= 10
 ORDER BY score DESC;
--- example: mysql -u root -p < 4-best_score.sql
