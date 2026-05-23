@@ -1,2 +1,2 @@
---list all in table
+ -- ist all in table
 SELECT* FROM first_table;
