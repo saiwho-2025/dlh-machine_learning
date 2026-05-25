@@ -1,22 +1,29 @@
--- create a stored procedure AddBonus that adds a new correction for a student
+DROP PROCEDURE IF EXISTS AddBonus;
+
+DELIMITER $$
+
 CREATE PROCEDURE AddBonus(
     IN p_user_id INT,
     IN p_project_name VARCHAR(255),
     IN p_score INT
 )
 BEGIN
-    -- Insert project if it does not exist
-    INSERT INTO projects (name)
-    SELECT p_project_name
-    WHERE NOT EXISTS (
-        SELECT 1 FROM projects WHERE name = p_project_name
-    );
+    DECLARE v_project_id INT DEFAULT NULL;
 
-    -- Insert correction for the student
+    SELECT id INTO v_project_id
+    FROM projects
+    WHERE name = p_project_name
+    LIMIT 1;
+
+    IF v_project_id IS NULL THEN
+        INSERT INTO projects (name)
+        VALUES (p_project_name);
+
+        SET v_project_id = LAST_INSERT_ID();
+    END IF;
+
     INSERT INTO corrections (user_id, project_id, score)
-    VALUES (
-        p_user_id,
-        (SELECT id FROM projects WHERE name = p_project_name),
-        p_score
-    );
-END;
+    VALUES (p_user_id, v_project_id, p_score);
+END$$
+
+DELIMITER ;
