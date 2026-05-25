@@ -1,7 +1,7 @@
--- create a trigger to reduce the quantity of an item after adding order
-CREATE TRIGGER decrease_quantity
+-- Create trigger to decrease item quantity after a new order
+CREATE TRIGGER decrease_item
 AFTER INSERT ON orders
 FOR EACH ROW
-    UPDATE items
-    SET quantity = quantity - NEW.number
-    WHERE item_name = NEW.item_name;
+UPDATE items
+SET quantity = quantity - NEW.`number`
+WHERE name = NEW.item_name;
