@@ -1,3 +1,4 @@
+-- Create a stored procedure AddBonus that adds a correction for a user/project
 DROP PROCEDURE IF EXISTS AddBonus;
 
 DELIMITER $$
