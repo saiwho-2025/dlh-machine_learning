@@ -1,11 +1,7 @@
 -- create a trigger to reduce the quantity of an item after adding order
-DELIMITER $$
 CREATE TRIGGER decrease_quantity
 AFTER INSERT ON orders
 FOR EACH ROW
-BEGIN
     UPDATE items
-    SET quantity = quantity - NEW.quantity
+    SET quantity = quantity - NEW.number
     WHERE item_name = NEW.item_name;
-END$$
-DELIMITER ;
