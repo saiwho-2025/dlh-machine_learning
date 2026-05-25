@@ -1,6 +1,5 @@
---list bands and rank them
-SELECT band_name, formed and split 
+-- List Glam rock bands ranked by lifespan
+SELECT band_name, IFNULL(split, 2020) - formed AS lifespan
 FROM metal_bands
-WHERE genre = 'glam rock'
-lifespan = split - formed
+WHERE style LIKE '%Glam rock%'
 ORDER BY lifespan DESC;
