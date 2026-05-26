@@ -1,8 +1,15 @@
 -- creates a function SafeDiv that divides two numbers and returns 0 if the second number is zero
-DROP FUNCTION IF EXISTS SafeDiv;
-DELIMITER $$
-CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS FLOAT
+
+DELIMITTER $$
+
+
+CREATE FUNCTION SafeDiv(a INT, b INT) 
+RETURNS FLOAT
 BEGIN
-    RETURN IF(b = 0, 0, a / b);
+    IF b = 0 THEN
+        RETURN 0;
+    ELSE
+        RETURN a / b;
+    END IF;
 END$$
 DELIMITER ;
