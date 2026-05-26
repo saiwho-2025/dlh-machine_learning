@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# List all MongoDB databases.
+# Usage:
+#   ./list_dbs.sh
+#   ./list_dbs.sh "mongodb://localhost:27017"
+
+MONGO_URI="${1:-mongodb://localhost:27017}"
+
+if ! command -v mongosh >/dev/null 2>&1; then
+  echo "Error: mongosh is not installed or not in PATH."
+  exit 1
+fi
+
+mongosh "$MONGO_URI" --quiet --eval '
+  db.adminCommand({ listDatabases: 1 }).databases.forEach(function(database) {
+    print(database.name);
+  });
+'
