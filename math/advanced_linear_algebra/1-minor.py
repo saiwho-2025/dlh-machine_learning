@@ -28,7 +28,8 @@ def determinant(matrix):
 
 def minor(matrix):
     """calculates the minor matrix of a matrix"""
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+    if (not isinstance(matrix, list)
+            or not all(isinstance(row, list) for row in matrix)):
         raise TypeError("matrix must be a list of lists")
 
     if matrix == [] or any(len(row) != len(matrix) for row in matrix):
