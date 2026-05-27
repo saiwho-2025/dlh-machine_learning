@@ -1,15 +1,31 @@
 #!/usr/bin/env python3
-"""this module returns the list of school having a specific topic"""
+"""
+Print stats about Nginx logs stored in MongoDB.
+"""
+
+from pymongo import MongoClient
 
 
-def schools_by_topic(mongo_collection, topic):
-    """returns the list of school having a specific topic
+def log_stats():
+    """Display log statistics."""
+    client = MongoClient("mongodb://127.0.0.1:27017")
+    collection = client.logs.nginx
 
-    Args:
-        mongo_collection: the pymongo collection object
-        topic: the topic searched
+    print(f"{collection.count_documents({})} logs")
+    print("Methods:")
 
-    Returns:
-        the list of school having a specific topic
-    """
-    return mongo_collection.find({"topics": topic})
+    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+
+    for method in methods:
+        count = collection.count_documents({"method": method})
+        print(f"\tmethod {method}: {count}")
+
+    status_count = collection.count_documents({
+        "method": "GET",
+        "path": "/status"
+    })
+    print(f"{status_count} status check")
+
+
+if __name__ == "__main__":
+    log_stats()
