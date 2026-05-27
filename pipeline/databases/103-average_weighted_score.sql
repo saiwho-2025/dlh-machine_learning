@@ -8,7 +8,7 @@ BEGIN
         SELECT SUM(c.score * p.weight) / SUM(p.weight)
         FROM corrections AS c
         INNER JOIN projects AS p
-            ON c.project_id = p.project_id
+            ON c.project_id = p.id
         WHERE c.user_id = user_id
     )
     WHERE id = user_id;
