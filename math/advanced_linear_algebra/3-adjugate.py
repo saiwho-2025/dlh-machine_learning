@@ -77,6 +77,7 @@ def cofactor(matrix):
 def adjugate(matrix):
     """return the adjugate matrix of a matrix"""
     cofactor_matrix = cofactor(matrix)
+
     adjugate_matrix = [list(row) for row in zip(*cofactor_matrix)]
 
     return adjugate_matrix
