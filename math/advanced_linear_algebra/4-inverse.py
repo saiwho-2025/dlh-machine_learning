@@ -85,9 +85,6 @@ def adjugate(matrix):
 def inverse(matrix):
     """return the inverse matrix of a matrix"""
     det_matrix = determinant(matrix)
-
-    if det_matrix == 0:
-        return None
     
     if (not isinstance(matrix, list)
             or not all(isinstance(row, list) for row in matrix)):
