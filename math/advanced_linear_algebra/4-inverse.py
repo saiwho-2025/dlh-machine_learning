@@ -91,6 +91,9 @@ def inverse(matrix):
     if matrix == [] or any(len(row) != len(matrix) for row in matrix):
         raise ValueError("matrix must be a non-empty square matrix")
 
+    if det_matrix == 0:
+    raise ZeroDivisionError ("None")
+
     det_matrix = determinant(matrix)
 
     adjugate_matrix = adjugate(matrix)
