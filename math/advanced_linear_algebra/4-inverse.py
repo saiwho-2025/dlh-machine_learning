@@ -88,10 +88,10 @@ def inverse(matrix):
 
     det_matrix = determinant(matrix)
 
-    adjugate_matrix = adjugate(matrix)
-
     if det_matrix == 0:
         return None
+
+    adjugate_matrix = adjugate(matrix)
 
     inverse_matrix = []
 
@@ -99,8 +99,8 @@ def inverse(matrix):
         inverse_row = []
 
     for value in row:
-        inverse_row.append(value / det_matrix)
+        inverse_row.append(int(value / det_matrix))
 
     inverse_matrix.append(inverse_row)
 
-    return inverse
+    return inverse_matrix
