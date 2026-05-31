@@ -108,6 +108,6 @@ def inverse(matrix):
     for value in row:
         inverse_row.append(value / det_matrix)
 
-    inverse_matrix.append(inverse_row)
+        inverse_matrix.append(inverse_row)
 
     return inverse_matrix
