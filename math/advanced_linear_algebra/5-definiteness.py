@@ -10,6 +10,9 @@ def definiteness(matrix):
 
     if matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
         return None
+    
+    if not np.allclose(matrix, matrix.T):
+        return None
 
     try:
         eigenvalues = np.linalg.eigvalsh(matrix)
