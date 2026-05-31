@@ -84,18 +84,18 @@ def adjugate(matrix):
 
 def inverse(matrix):
     """return the inverse matrix of a matrix"""
-    det_matrix = determinant(matrix)
-
-    adjugate_matrix = adjugate(matrix)
-
-    inverse_matrix = []
-    
     if (not isinstance(matrix, list)
             or not all(isinstance(row, list) for row in matrix)):
         raise TypeError("matrix must be a list of lists")
 
     if matrix == [] or any(len(row) != len(matrix) for row in matrix):
         raise ValueError("matrix must be a non-empty square matrix")
+
+    det_matrix = determinant(matrix)
+
+    adjugate_matrix = adjugate(matrix)
+
+    inverse_matrix = []
 
     for row in adjugate_matrix:
         inverse_row = []
