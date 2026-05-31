@@ -105,8 +105,8 @@ def inverse(matrix):
     for row in adjugate_matrix:
         inverse_row = []
 
-    for value in row:
-        inverse_row.append(value / det_matrix)
+        for value in row:
+            inverse_row.append(value / det_matrix)
 
         inverse_matrix.append(inverse_row)
 
