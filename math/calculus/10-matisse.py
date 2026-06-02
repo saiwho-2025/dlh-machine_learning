@@ -3,11 +3,13 @@
 
 
 def poly_derivative(poly):
-    """the function"""
-    if _poly is not valid;
+    """calculates the derivatives of a polynomial"""
+    if not isinstance(poly,int):
         return None
     
-    if _derivative == 0;
+    if poly == 0:
         return [0]
-    
-    poly_derivative(poly) = 
+
+    for power in range (len(coefficients)):
+        poly_derivative(poly).coefficients[power]
+    return poly_derivative(poly)
