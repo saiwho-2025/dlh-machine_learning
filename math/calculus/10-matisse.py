@@ -10,6 +10,6 @@ def poly_derivative(poly):
     if poly == 0:
         return [0]
 
-    for power in range(len(coefficients)):
+    for power in range(len(power)):
         poly_derivative(poly).coefficients[power]
     return poly_derivative(poly)
