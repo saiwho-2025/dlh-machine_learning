@@ -3,6 +3,18 @@
 
 
 def summation_i_squared(n):
-    if (not isinstance(n, int) or n<1):
+    """
+    Calculates the sum of squares from 1 to n.
+    
+    Args:
+        n: the stopping condition(positive integer).
+    
+    Returns:
+        Integer sum of squares if n is a valid positive integer, no None.
+    """
+    
+
+    if (not isinstance(n, int) or n < 1):
         return None
+    
     return n * (n + 1) * (2 * n + 1) // 6
