@@ -1,15 +1,28 @@
-#!/usr/bin/env python3
-"""this module calculates the derivative of a polynomial"""
-
-
 def poly_derivative(poly):
-    """calculates the derivatives of a polynomial"""
-    if not isinstance(poly, int):
+    """
+    Calculate the derivative of a polynomial.
+
+    Args:
+        poly: A list of coefficients where each index represents
+              the power of x for that coefficient.
+
+    Returns:
+        A new list of coefficients representing the derivative,
+        [0] if the derivative is 0, or None if poly is invalid.
+    """
+    if not isinstance(poly, list) or len(poly) == 0:
         return None
 
-    if poly == 0:
+    for coefficient in poly:
+        if not isinstance(coefficient, (int, float)):
+            return None
+
+    if len(poly) == 1:
         return [0]
 
-    for power in range(len(power)):
-        poly_derivative(poly).coefficients[power]
-    return poly_derivative(poly)
+    derivative = []
+
+    for power in range(1, len(poly)):
+        derivative.append(poly[power] * power)
+
+    return derivative
