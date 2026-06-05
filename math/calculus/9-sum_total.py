@@ -12,7 +12,7 @@ def summation_i_squared(n):
     Returns:
         Integer sum of squares if n is a valid positive integer, no None.
     """
-    
+
 
     if type(n) is not int or n < 1:
         return None
