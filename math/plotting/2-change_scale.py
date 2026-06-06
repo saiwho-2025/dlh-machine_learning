@@ -11,8 +11,8 @@ def change_scale():
     t = 5730
     y = np.exp((r / t) * x)
 
-    # Plot the line exactly as a solid red line
-    plt.plot(x, y, 'r-')
+    # Plot the line exactly as a solid blue line
+    plt.plot(x, y)
 
     # Set exact labels, title, and scaling
     plt.xlabel("Time (years)")
