@@ -6,13 +6,16 @@ import matplotlib.pyplot as plt
 
 
 def scatter():
-"""plot this scattor plot"""
+    """Plot men's height versus weight as a scatter plot."""
 
     mean = [69, 0]
     cov = [[15, 8], [8, 15]]
+
     np.random.seed(5)
     x, y = np.random.multivariate_normal(mean, cov, 2000).T
     y += 180
+
+
     plt.figure(figsize=(6.4, 4.8))
     plt.scatter(x, y, color="magenta")
     plt.xlabel("Height (in)")
