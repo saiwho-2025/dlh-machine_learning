@@ -19,11 +19,8 @@ def change_scale():
     plt.ylabel("Fraction Remaining")
     plt.title("Exponential Decay of C-14")
     plt.yscale("log")
-    
+
     # Set the precise x-axis limits matching the test suite format
     plt.xlim([0, 28650])
 
     plt.show()
-
-if __name__ == "__main__":
-    change_scale()
