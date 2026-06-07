@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""this module plot a histogram of student scores for a project"""
+"""this module plot a histogram of student grades for a project"""
 
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def frequency():
-    # plot student scores for a project
+    # plot student gradess for a project
 
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
@@ -21,7 +21,7 @@ def frequency():
     plt.figure(figsize=(6.4, 4.8))
 
     # Plot histogram with black outlines around the bars
-    plt.hist(scores, bins=bins, edgecolor='black')
+    plt.hist(grades, bins=bins, edgecolor='black')
 
     # Label the axes and give the plot a title
     plt.xlabel("Grades")
