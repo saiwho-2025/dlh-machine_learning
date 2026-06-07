@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-"""this module plot a histogram of student grades for a project"""
+#!/usr/bin/env python3project
+"""this module plots a histogram of student grades into bins """
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,8 +7,7 @@ import matplotlib.pyplot as plt
 
 def frequency():
     # plot student grades for a project
-
-    np.random.seed(0)
+    np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
 
     # Initialize the figure size
