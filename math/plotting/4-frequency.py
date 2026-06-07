@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def frequency():
-    # plot student gradess for a project
+    # plot student grades for a project
 
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
