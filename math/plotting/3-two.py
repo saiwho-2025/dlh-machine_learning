@@ -10,13 +10,13 @@ def two():
     r = np.log(0.5)
     t1 = 5730
     t2 = 1600
-    
+
     # Mathematical definitions for the decay curves
     # (Using standard half-life constants for C-14 and Ra-226)
     y1 = np.exp((r / t1) * x)
     y2 = np.exp((r / t2) * x)
 
-    #Initialize the figure size
+    # Initialize the figure size
     plt.figure(figsize=(6.4, 4.8))
 
     # Plot y1 line exactly as a dashed red line
@@ -32,7 +32,7 @@ def two():
 
     # Set the precise x-axis limits matching the test suite format
     plt.xlim([0, 20000])
-    plt.ylim([0,1])
+    plt.ylim([0, 1])
 
     # Place the legend in the upper right hand corner
     plt.legend(loc='upper right')
