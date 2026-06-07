@@ -1,40 +1,38 @@
 #!/usr/bin/env python3
-"""plot a bar graph"""
-import matplotlib.pyplot as plt
+"""Plot a stacked bar graph."""
+
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 def bars():
-    # Data definition
-    fruit = np.array([
-        [10, 12, 15], # apples
-        [15, 10, 20], # bananas
-        [5, 8, 10],   # oranges
-        [20, 15, 5]   # peaches
-    ])
+    """Plot number of fruit per person as a stacked bar graph."""
+    fruit = np.array([[30, 25, 50],
+                      [40, 23, 51],
+                      [10, 5, 30],
+                      [0, 10, 5]])
 
-    people = ['Farrah', 'Fred', 'Felicia']
-    fruit_names = ['Apples', 'Bananas', 'Oranges', 'Peaches']
-    colors = ['red', 'yellow', '#ff8000', '#ffe5b4']
+    people = ["Farrah", "Fred", "Felicia"]
+    x = np.arange(len(people))
+    width = 0.5
 
-    # Initialize figure
-    plt.figure(figsize=(8, 6))
+    apples = fruit[0]
+    bananas = fruit[1]
+    oranges = fruit[2]
+    peaches = fruit[3]
 
-    # Plotting loop
-    bottom = np.zeros(len(people))
-    for i in range(len(fruit)):
-        plt.bar(people, fruit[i], bottom=bottom, color=colors[i], 
-                label=fruit_names[i], width=0.5)
-        bottom += fruit[i]
+    plt.bar(x, apples, width, color="red", label="apples")
+    plt.bar(x, bananas, width, bottom=apples,
+            color="yellow", label="bananas")
+    plt.bar(x, oranges, width, bottom=apples + bananas,
+            color="#ff8000", label="oranges")
+    plt.bar(x, peaches, width, bottom=apples + bananas + oranges,
+            color="#ffe5b4", label="peaches")
 
-    # Required axis settings
-    plt.ylabel('Quantity of Fruit')
-    plt.title('Number of Fruit per Person')
-    plt.ylim(0, 80)
+    plt.xticks(x, people)
+    plt.ylabel("Quantity of Fruit")
     plt.yticks(np.arange(0, 81, 10))
-    
-    # Ensure legend is present
+    plt.ylim(0, 80)
+    plt.title("Number of Fruit per Person")
     plt.legend()
-
-    # The test script likely expects an output confirming the visual match 
-    # instead of a GUI window, so remove plt.show() if it blocks execution.
-    print("The plot matches the reference.")
+    plt.show()
