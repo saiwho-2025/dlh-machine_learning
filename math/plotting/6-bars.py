@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 def bars():
-    """Plot number of fruit per person as a stacked bar graph."""
+    """Plot a stacked bar graph of fruit per person."""
     fruit = np.array([[30, 25, 50],
                       [40, 23, 51],
                       [10, 5, 30],
@@ -14,20 +14,16 @@ def bars():
 
     people = ["Farrah", "Fred", "Felicia"]
     x = np.arange(len(people))
-    width = 0.5
 
-    apples = fruit[0]
-    bananas = fruit[1]
-    oranges = fruit[2]
-    peaches = fruit[3]
+    plt.figure(figsize=(6.4, 4.8))
 
-    plt.bar(x, apples, width, color="red", label="apples")
-    plt.bar(x, bananas, width, bottom=apples,
-            color="yellow", label="bananas")
-    plt.bar(x, oranges, width, bottom=apples + bananas,
-            color="#ff8000", label="oranges")
-    plt.bar(x, peaches, width, bottom=apples + bananas + oranges,
-            color="#ffe5b4", label="peaches")
+    plt.bar(x, fruit[0], width=0.5, color="red", label="apples")
+    plt.bar(x, fruit[1], width=0.5, color="yellow", label="bananas",
+            bottom=fruit[0])
+    plt.bar(x, fruit[2], width=0.5, color="#ff8000", label="oranges",
+            bottom=fruit[0] + fruit[1])
+    plt.bar(x, fruit[3], width=0.5, color="#ffe5b4", label="peaches",
+            bottom=fruit[0] + fruit[1] + fruit[2])
 
     plt.xticks(x, people)
     plt.ylabel("Quantity of Fruit")
@@ -35,4 +31,5 @@ def bars():
     plt.ylim(0, 80)
     plt.title("Number of Fruit per Person")
     plt.legend()
+    plt.show()
     plt.show()
