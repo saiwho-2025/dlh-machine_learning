@@ -15,9 +15,8 @@ def gradient():
     plt.figure(figsize=(6.4, 4.8))
 
     # scatter setting
-    plt.figure(figsize=(6.4, 4.8))
-    plt.scatter(x, y, c = z)
 
+    plt.scatter(x, y, c = z)
     # labels and title setting
     plt.xlabel("x coordinate (m)")
     plt.ylabel("y coordinate (m)")
@@ -25,4 +24,3 @@ def gradient():
 
     # show it
     plt.show()
-
