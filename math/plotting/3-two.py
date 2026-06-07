@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def two():
     """plot 2 graphs x-y1, x-y2."""
     x = np.arange(0, 21000, 1000)
@@ -22,7 +23,7 @@ def two():
     plt.plot(x, y1, "r--", label='C-14')
 
     # Plot y2 line exatly as a solid green line
-    plt.plot(x, y2, 'g-', lable='Ra-226')
+    plt.plot(x, y2, 'g-', label='Ra-226')
 
     # Set exact labels, title, and scaling
     plt.xlabel("Time (years)")
@@ -30,7 +31,7 @@ def two():
     plt.title("Exponential Decay of Radioactive Elements")
 
     # Set the precise x-axis limits matching the test suite format
-    plt.xlim([0, 20001])
+    plt.xlim([0, 20000])
     plt.ylim([0,1])
 
     # Place the legend in the upper right hand corner
@@ -38,4 +39,6 @@ def two():
 
     # Render the graph
     plt.show()
-    
+
+    if __name__ == "__main__":
+        two()
