@@ -11,15 +11,15 @@ def frequency():
 
     # initialize the graph
     plt.figure(figsize=(6.4, 4.8))
-    bins=range(0, 101, 10)
+    bins = range(0, 101, 10)
 
     # Plot the bins
     plt.hist(student_grades, bins=range(0, 101, 10), edgecolor='black')
     plt.xlabel('Grades')
     plt.ylabel('Number of Students')
     plt.title('Project A')
-    plt.xlim(0,100)
+    plt.xlim(0, 100)
     plt.xticks(range(0, 101, 10))
-    plt.ylim(0,30)
+    plt.ylim(0, 30)
     # show the result
     plt.show()
