@@ -24,8 +24,5 @@ def frequency():
     plt.ylabel('Number of Students')
     plt.title('Project A')
 
-    # Align the x-axis ticks with the 10-unit bins and set precise limits
-    plt.xlim(0,100)
-
     # Display the final graph
     plt.show()
