@@ -27,7 +27,7 @@ def frequency():
 
     # Align the x-axis ticks with the 10-unit bins and set precise limits
     plt.xticks(bins)
-    plt.xlim(0, 100)
 
     # Display the final graph
     plt.show()
+
