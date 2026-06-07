@@ -21,7 +21,7 @@ def frequency():
     plt.figure(figsize=(6.4, 4.8))
 
     # Plot histogram with black outlines around the bars
-    plt.hist(grades, bins=bins, edgecolor='black')
+    plt.hist(student_grades, bins=bins, edgecolor='black')
 
     # Label the axes and give the plot a title
     plt.xlabel("Grades")
