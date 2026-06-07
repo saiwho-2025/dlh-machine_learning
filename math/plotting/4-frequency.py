@@ -1,28 +1,19 @@
-#!/usr/bin/env python3project
-"""this module plots a histogram of student grades into bins """
-
+#!/usr/bin/env python3
+"""Plot frenquency groupped into bins"""
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def frequency():
-    # plot student grades for a project
+    """Frenquency groupped into bins, blue ones"""
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
-
-    # Initialize the figure size
     plt.figure(figsize=(6.4, 4.8))
 
-    # Define bins every 10 units from 0 to 100
-    bins = range(0, 101, 10)
-
-    # Plot histogram with black outlines around the bars
-    plt.hist(student_grades, bins=bins, edgecolor='black')
-
-    # Label the axes and give the plot a title
+    # your code here
+    plt.hist(student_grades, bins=range(0, 101, 10), edgecolor='black')
     plt.xlabel('Grades')
     plt.ylabel('Number of Students')
     plt.title('Project A')
-
-    # Display the final graph
+    plt.xlim(0, 100)
     plt.show()
