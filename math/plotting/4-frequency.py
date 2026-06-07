@@ -21,13 +21,13 @@ def frequency():
     plt.hist(student_grades, bins=bins, edgecolor='black')
 
     # Label the axes and give the plot a title
-    plt.xlabel("Grades")
-    plt.ylabel("Number of Students")
-    plt.title("Project A")
+    plt.xlabel('Grades')
+    plt.ylabel('Number of Students')
+    plt.title('Project A')
 
     # Align the x-axis ticks with the 10-unit bins and set precise limits
     plt.xticks(bins)
+    plt.xlim(0, 100)
 
     # Display the final graph
     plt.show()
-
