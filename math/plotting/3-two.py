@@ -9,6 +9,9 @@ def two():
     r = np.log(0.5)
     t1 = 5730
     t2 = 1600
+    
+    # Mathematical definitions for the decay curves
+    # (Using standard half-life constants for C-14 and Ra-226)
     y1 = np.exp((r / t1) * x)
     y2 = np.exp((r / t2) * x)
 
@@ -16,10 +19,10 @@ def two():
     plt.figure(figsize=(6.4, 4.8))
 
     # Plot y1 line exactly as a dashed red line
-    plt(x, y1, "r--", label='C-14')
+    plt.plot(x, y1, "r--", label='C-14')
 
     # Plot y2 line exatly as a solid green line
-    plt(x, y2, 'g-', lable='Ra-226')
+    plt.plot(x, y2, 'g-', lable='Ra-226')
 
     # Set exact labels, title, and scaling
     plt.xlabel("Time (years)")
