@@ -1,35 +1,30 @@
 #!/usr/bin/env python3
-"""Plot a stacked bar graph."""
-
+"""stack of bars in name of people and fruits"""
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def bars():
-    """Plot a stacked bar graph of fruit per person."""
-    fruit = np.array([[30, 25, 50],
-                      [40, 23, 51],
-                      [10, 5, 30],
-                      [0, 10, 5]])
-
-    people = ["Farrah", "Fred", "Felicia"]
-    x = np.arange(len(people))
-
+    """ plots stack of bars, with semantic color choice"""
+    np.random.seed(5)
+    fruit = np.random.randint(0, 20, (4, 3))
     plt.figure(figsize=(6.4, 4.8))
 
-    plt.bar(x, fruit[0], width=0.5, color="red", label="apples")
-    plt.bar(x, fruit[1], width=0.5, color="yellow", label="bananas",
-            bottom=fruit[0])
-    plt.bar(x, fruit[2], width=0.5, color="#ff8000", label="oranges",
-            bottom=fruit[0] + fruit[1])
-    plt.bar(x, fruit[3], width=0.5, color="#ffe5b4", label="peaches",
-            bottom=fruit[0] + fruit[1] + fruit[2])
+    # your code here
+    people = ['Farrah', 'Fred', 'Felicia']
+    colors = ['red', 'yellow', '#ff8000', '#ffe5b4']
+    labels = ['apples', 'bananas', 'oranges', 'peaches']
+    width = 0.50
 
-    plt.xticks(x, people)
-    plt.ylabel("Quantity of Fruit")
-    plt.yticks(np.arange(0, 81, 10))
+    bottom = np.zeros(3)
+    for i in range(4):
+        plt.bar(people, fruit[i], width=width, color=colors[i],
+                label=labels[i], bottom=bottom)
+        bottom += fruit[i]
+
+    plt.ylabel('Quantity of Fruit')
     plt.ylim(0, 80)
-    plt.title("Number of Fruit per Person")
+    plt.yticks(range(0, 81, 10))
+    plt.title('Number of Fruit per Person')
     plt.legend()
-    plt.show()
     plt.show()
