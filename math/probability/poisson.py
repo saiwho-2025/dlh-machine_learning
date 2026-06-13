@@ -44,3 +44,12 @@ class Poisson:
         if value <= 0:
             raise ValueError("lambtha must be a positive value")
         self.__lambtha = float(value)
+
+    def pmf(self, k):
+        """k is the number of successes"""
+        if not isinstance(k,int):
+            k = int(k)
+        elif k < 0:
+            return 0
+    
+        return p.pmf(k)
