@@ -56,7 +56,7 @@ class Poisson:
         e = 2.7182818285
         factorial = 1 
 
-        for i in range(1, K + 1):
+        for i in range(1, k + 1):
             factorial *= i
     
         return ((self.__lambtha ** k) * (e ** (-self.__lambtha))) / factorial
