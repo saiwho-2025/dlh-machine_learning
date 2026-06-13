@@ -10,6 +10,7 @@ class Poisson:
             Arguments:
                 data is a list of the data for estimation of the distribution
                 lambtha is expected number of occurrences in a given time frame
+                k is the given number of successes.
         """
         if data is None:
             self.lambtha = lambtha
@@ -46,10 +47,16 @@ class Poisson:
         self.__lambtha = float(value)
 
     def pmf(self, k):
-        """k is the number of successes"""
-        if not isinstance(k,int):
-            k = int(k)
-        elif k < 0:
+        """The value of the PMF for a given number of successes."""
+        k = int(k)
+
+        if k < 0:
             return 0
+
+        e = 2.7182818285
+        factorial = 1 
+
+        for i in range(1, K + 1):
+            factorial *= i
     
-        return p.pmf(k)
+        return ((self.__lambtha ** k) * (e ** (-self.__lambtha))) / factorial
