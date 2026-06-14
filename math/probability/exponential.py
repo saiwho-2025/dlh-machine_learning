@@ -32,14 +32,8 @@ class Exponential:
     
     def cdf(self, k):
         """the cumulative probability of k in this poisson distribution"""
-        k = int(k)
-
-        if k < 0:
+        if x < 0:
             return 0
-
-        cdf_value = 0
-
-        for i in range(k + 1):
-            cdf_value += self.pmf(i)
-
-        return cdf_value
+        
+        e = 2.7182818285
+        return 1 - (e ** (-self.lambtha * x))
