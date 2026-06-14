@@ -30,7 +30,7 @@ class Exponential:
 
         return self.lambtha * (e ** (-self.lambtha * x))
     
-        def cdf(self, k):
+    def cdf(self, k):
         """the cumulative probability of k in this poisson distribution"""
         k = int(k)
 
