@@ -28,4 +28,4 @@ class Exponential:
         
         e = 2.7182818285
 
-        return self.lambtha *(e **(-self.lambtha * x))
+        return self.lambtha * (e ** (-self.lambtha * x))
