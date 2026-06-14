@@ -68,3 +68,16 @@ class Binomial:
         combination = fact_n / (fact_k * fact_n_k)
 
         return combination * (self.p ** k) * ((1 - self.p) ** (self.n - k))
+
+    def cdf(self, k):
+        """calculate the value of the CDF using pmf"""        k = int(k)
+
+        k = int(k)
+
+        if k < 0 or k > self.n:
+            return 1
+
+        cdf_sum = 0
+        for i in range(1, k+1):
+            cdf_sum += self.pmf(i)
+        return cdf_sum
