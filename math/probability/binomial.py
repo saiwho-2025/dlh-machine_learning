@@ -28,19 +28,19 @@ class Binomial:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
 
-        mean = sum(data) / len(data)
-        variance = sum((x - mean) ** 2 for x in data) / len(data)
+            mean = sum(data) / len(data)
+            variance = sum((x - mean) ** 2 for x in data) / len(data)
 
             # From:
             # mean = n * p
             # variance = n * p * (1 - p)
             # variance / mean = 1 - p
-        p = 1 - (variance / mean)
+            p = 1 - (variance / mean)
 
-        n = round(mean / p)
+            n = round(mean / p)
 
             # Recalculate p using the rounded n
-        p = mean / n
+            p = mean / n
 
-        self.n = int(n)
-        self.p = float(p)
+            self.n = int(n)
+            self.p = float(p)
