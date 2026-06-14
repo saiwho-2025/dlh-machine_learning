@@ -15,7 +15,7 @@ class Normal:
                 raise ValueError("stddev must be a positive value")
             self.mean = float(mean)
             self.stddev = float(stddev)
-        
+
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
@@ -25,5 +25,4 @@ class Normal:
 
         self.mean = float(sum(data) / len(data))
 
-        variance = sum((x - self.mean)) ** 2 for x in data) / len(data)
-        self.stddev = float(variance ** 0.5)
+
