@@ -68,5 +68,4 @@ class Binomial:
         combination = fact_n / (fact_k * fact_n_k)
 
         return combination * (self.p ** k) * ((1 - self.p) ** (self.n - k))
-        
-
+    
