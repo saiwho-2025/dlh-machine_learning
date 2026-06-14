@@ -41,4 +41,4 @@ class Normal:
 
         def x_value(self, z):
             """Calculates the x-value of a given z-score"""
-           return float((z * self.stddev) + self.mean)
+            return float((z * self.stddev) + self.mean)
