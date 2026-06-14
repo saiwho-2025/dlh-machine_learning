@@ -80,6 +80,6 @@ class Binomial:
             return 0
 
         cdf_sum = 0
-        for i in range(1, k + 1):
+        for i in range(0, k + 1):
             cdf_sum += self.pmf(i)
         return cdf_sum
