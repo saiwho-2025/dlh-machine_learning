@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""using class Poisson to represent a poisson distribution """
-
-
-import numpy
+"""using class Poisson to represent a poisson distribution ""
 
 
 class Poisson:
@@ -70,13 +67,10 @@ class Poisson:
 
         if k < 0:
             return 0
-        
+
         cdf_value = 0
 
         for i in range(k+1):
             cdf_value += self.pmf(i)
-        
-        return cdf_value
-        
 
-    
+        return cdf_value
