@@ -2,6 +2,9 @@
 """using class Poisson to represent a poisson distribution """
 
 
+import numpy
+
+
 class Poisson:
     """The classic Poisson distribution."""
 
@@ -60,3 +63,15 @@ class Poisson:
             factorial *= i
 
         return ((self.__lambtha ** k) * (e ** (-self.__lambtha))) / factorial
+
+    def cdf(self,k):
+        """the cumulative probability of k in this poisson distribution"""
+        k = int(k)
+
+        if k < 0:
+            return 0
+        
+        return numpy.cumsum(self.pmf)
+        
+
+    
