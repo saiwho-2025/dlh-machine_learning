@@ -61,7 +61,7 @@ class Poisson:
 
         return ((self.__lambtha ** k) * (e ** (-self.__lambtha))) / factorial
 
-    def cdf(self,k):
+    def cdf(self, k):
         """the cumulative probability of k in this poisson distribution"""
         k = int(k)
 
