@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""using class Poisson to represent a poisson distribution ""
+"""using class Poisson to represent a poisson distribution """
 
 
 class Poisson:
@@ -11,7 +11,7 @@ class Poisson:
                 data is a list of the data for estimation of the distribution
                 lambtha is expected number of occurrences in a given time frame
                 k is the given number of successes.
-        """
+    """
         if data is None:
             self.lambtha = lambtha
             self.__data = None
@@ -70,7 +70,7 @@ class Poisson:
 
         cdf_value = 0
 
-        for i in range(k+1):
+        for i in range(k + 1):
             cdf_value += self.pmf(i)
 
         return cdf_value
