@@ -77,7 +77,7 @@ class Binomial:
             return 0
 
         if k > self.n:
-            return 1
+            return 0
 
         cdf_sum = 0
         for i in range(1, k + 1):
