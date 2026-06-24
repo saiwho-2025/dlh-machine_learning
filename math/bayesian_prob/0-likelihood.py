@@ -2,7 +2,7 @@
 """Calculates the likelihood of obtaining data given probabilities."""
 
 import numpy as np
-likelihood = __import__('0-likelihood').likelihood
+
 
 def likelihood(x, n, P):
     """
