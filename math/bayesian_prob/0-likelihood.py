@@ -2,7 +2,7 @@
 """Calculates the likelihood of obtaining data given probabilities."""
 
 import numpy as np
-
+likelihood = __import__('0-likelihood').likelihood
 
 def likelihood(x, n, P):
     """
@@ -38,7 +38,3 @@ def likelihood(x, n, P):
     if np.any(P < 0) or np.any(P > 1):
         raise ValueError("All values in P must be in the range [0, 1]")
 
-    factorial = np.math.factorial
-    combination = factorial(n) / (factorial(x) * factorial(n - x))
-
-    return combination * (P ** x) * ((1 - P) ** (n - x))
