@@ -51,4 +51,4 @@ def intersection(x, n, P, Pr):
     combination = factorial(n) / (factorial(x) * factorial(n - x))
     likelihood = combination * (P ** x) *((1 - P) ** (n - x))
 
-    return likelihood(x, n, P) * Pr
+    return likelihood * Pr
