@@ -4,7 +4,7 @@
 from scipy import special
 
 
-def intersection(x, n, p1, p2):
+def posterior(x, n, p1, p2):
     """
     Calculates the likelihood of obtaining the data given
     various hypothetical probabilities of developing severe side effects.
