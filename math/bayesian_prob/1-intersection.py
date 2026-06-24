@@ -3,29 +3,32 @@
 
 import numpy as np
 
-likelihood = __import__('0-likelihood').likelihood
-
 
 def intersection(x, n, P, Pr):
     """
-    Calculates the intersection of obtaining x successes in n trials
-    with each hypothetical probability in P.
+    Calculates the likelihood of obtaining the data given
+    various hypothetical probabilities of developing severe side effects.
 
     Args:
-        x: number of patients that develop severe side effects
+        x: number of patients who develop severe side effects
         n: total number of patients observed
-        P: 1D numpy.ndarray of hypothetical probabilities
+        P: 1D numpy.ndarray of probability values
         Pr: 1D numpy.ndarray of prior beliefs of P
 
     Returns:
-        1D numpy.ndarray containing the intersection values
+        numpy.ndarray containing the intersection values
     """
-    if not isinstance(n, int) or n <= 0:
+    if not isinstance(n, int):
+        raise ValueError("n must be a positive integer")
+    if n <= 0:
         raise ValueError("n must be a positive integer")
 
-    if not isinstance(x, int) or x < 0:
-        raise ValueError("x must be an integer that is greater than or equal to 0")
-
+    if not isinstance(x, int):
+        raise ValueError("x must be an integer that is "
+                         "greater than or equal to 0")
+    if x < 0:
+        raise ValueError("x must be an integer that is "
+                         "greater than or equal to 0")
     if x > n:
         raise ValueError("x cannot be greater than n")
 
@@ -36,12 +39,12 @@ def intersection(x, n, P, Pr):
         raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
 
     if np.any((P < 0) | (P > 1)):
-        raise ValueError("All values in P must be in the range [0, 1]")
+        raise ValueError("All values in P must be in the range [0,1]")
 
     if np.any((Pr < 0) | (Pr > 1)):
-        raise ValueError("All values in Pr must be in the range [0, 1]")
+        raise ValueError("All values in Pr must be in the range [0,1]")
 
-    if not np.isclose(np.sum(Pr), 1):
+    if not np.isclose(np.sum(Pr),1):
         raise ValueError("Pr must sum to 1")
 
     return likelihood(x, n, P) * Pr
