@@ -44,7 +44,7 @@ def intersection(x, n, P, Pr):
     if np.any((Pr < 0) | (Pr > 1)):
         raise ValueError("All values in Pr must be in the range [0,1]")
 
-    if not np.isclose(np.sum(Pr),1):
+    if not np.isclose(np.sum(Pr), 1):
         raise ValueError("Pr must sum to 1")
 
     return likelihood(x, n, P) * Pr
