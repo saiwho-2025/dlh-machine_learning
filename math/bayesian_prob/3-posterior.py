@@ -59,9 +59,10 @@ def marginal(x, n, P, Pr):
 
     return np.sum(intersection(x, n, P, Pr))
 
+
 def posterior(x, n, P, Pr):
     """calculates the posterior probability in P"""
 
-    posterior = intersection(x, n, P, Pr)  / marginal(x, n, P, Pr)
+    posterior = intersection(x, n, P, Pr) / marginal(x, n, P, Pr)
 
     return posterior
