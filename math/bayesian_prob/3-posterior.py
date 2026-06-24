@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Calculates the marginal of data with prior probabilities."""
+"""Calculates the Posterior probabilities of data."""
 
 import numpy as np
 
@@ -58,3 +58,10 @@ def marginal(x, n, P, Pr):
     """calculates the marginal probability of x based on intersection"""
 
     return np.sum(intersection(x, n, P, Pr))
+
+def posterior(x, n, P, Pr):
+    """calculates the posterior probability in P"""
+
+    posterior = intersection(x, n, P, Pr)  / marginal(x, n, P, Pr)
+
+    return posterior
