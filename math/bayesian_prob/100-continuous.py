@@ -35,8 +35,8 @@ def posterior(x, n, p1, p2):
     if not isinstance(p1, float) or p1 < 0 or p1 > 1:
         raise ValueError("p1 must be a float in the range [0, 1]")
 
-    if not isinstance(p2, float) or p2 < 0 or p2 >1:
-        raise ValueError("p2 must be a float in the range [0, 1]") 
+    if not isinstance(p2, float) or p2 < 0 or p2 > 1:
+        raise ValueError("p2 must be a float in the range [0, 1]")
 
     if p2 <= p1:
         raise ValueError("p2 must be greater than p1")
