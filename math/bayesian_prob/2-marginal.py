@@ -54,7 +54,7 @@ def intersection(x, n, P, Pr):
     return likelihood * Pr
 
 
-def marginal(x,n,P,Pr):
+def marginal(x, n, P, Pr):
     """calculates the marginal probability of x based on intersection"""
 
-    return np.sum(intersection(x,n,P,Pr))
+    return np.sum(intersection(x, n, P, Pr))
