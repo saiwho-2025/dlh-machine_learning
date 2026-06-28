@@ -23,9 +23,9 @@ class MultiNormal:
 
         self.mean = np.mean(data, axis=1, keepdims=True)
 
-        data_centered = data - self.mean
+        diff = data - self.mean
 
-        self.cov = np.matmul(data_centered, data_centered.T) / (n - 1)
+        self.cov = np.matmul(diff, diff.T) / (data.shape[1] - 1)
 
     def pdf(self, x):
         """
@@ -41,8 +41,6 @@ class MultiNormal:
         if x.shape != (d, 1):
             raise ValueError("x must have the shape ({}, 1)".format(d))
 
-        diff = x - self.mean
-
         cov_inv = np.linalg.inv(self.cov) 
         cov_det = np.linalg.det(self.cov)
 
@@ -52,4 +50,4 @@ class MultiNormal:
 
         pdf_value = np.exp(exponent) / denominator
 
-        return pdf_value
+        return pdf_value)
