@@ -43,13 +43,10 @@ class MultiNormal:
 
         mean_diff = x - self.mean
 
-        cov_inv = np.linalg.inv(self.cov)
+        cov_inv = np.linalg.inv(self.cov) 
         cov_det = np.linalg.det(self.cov)
 
-        exponent = -0.5 * np.matmul(
-            np.matmul(mean_diff.T, cov_inv),
-            mean_diff
-        )
+        exponent = -0.5 * ((diff.T @ cov_inv @ diff)[0, 0])
 
         denominator = np.sqrt(((2 * np.pi) ** d) * cov_det)
 
