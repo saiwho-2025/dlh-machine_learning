@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""this module caculates the PDF of a class MultiNormal"""
+"""Multivariate Normal distribution"""
+
 import numpy as np
 
 
@@ -8,8 +9,9 @@ class MultiNormal:
 
     def __init__(self, data):
         """
-        data is a numpy.ndarray of shape (d, n)
+        Class constructor.
 
+        data is a numpy.ndarray of shape (d, n)
         d = number of dimensions
         n = number of data points
         """
@@ -23,9 +25,9 @@ class MultiNormal:
 
         self.mean = np.mean(data, axis=1, keepdims=True)
 
-        diff = data - self.mean
+        centered = data - self.mean
 
-        self.cov = np.matmul(diff, diff.T) / (data.shape[1] - 1)
+        self.cov = np.matmul(centered, centered.T) / (n - 1)
 
     def pdf(self, x):
         """
@@ -41,13 +43,18 @@ class MultiNormal:
         if x.shape != (d, 1):
             raise ValueError("x must have the shape ({}, 1)".format(d))
 
-        cov_inv = np.linalg.inv(self.cov) 
-        cov_det = np.linalg.det(self.cov)
+        diff = x - self.mean
 
-        exponent = -0.5 * ((diff.T @ cov_inv @ diff)[0, 0])
+        exponent = -0.5 * np.matmul(
+            np.matmul(diff.T, np.linalg.inv(self.cov)),
+            diff
+        )
 
-        denominator = np.sqrt(((2 * np.pi) ** d) * cov_det)
+        denominator = np.sqrt(
+            ((2 * np.pi) ** d) * np.linalg.det(self.cov)
+        )
 
-        pdf_value = np.exp(exponent) / denominator
+        pdf = np.exp(exponent) / denominator
 
-        return pdf_value)
+        return pdf[0][0]
+    
