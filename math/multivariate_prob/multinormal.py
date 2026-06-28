@@ -52,4 +52,4 @@ class MultiNormal:
 
         pdf_value = np.exp(exponent) / denominator
 
-        return float(pdf_value)
+        return pdf_value
