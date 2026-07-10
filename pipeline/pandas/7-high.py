@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""sorte a dataframe by high price in desecending"""
+"""Sort a DataFrame by the High column in descending order."""
 
 
 def high(df):
