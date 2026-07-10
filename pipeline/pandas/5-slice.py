@@ -3,5 +3,5 @@
 
 
 def slice(df):
-    """take a pd.DataFrame and extract columns, select the 60th row and return it"""
+    """take a pd.DataFrame, extract columns, select the 60th row and return it"""
     return df[["High", "Low", "Close", "Volume_(BTC)"]].iloc[::60]
