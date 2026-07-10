@@ -3,5 +3,5 @@
 
 
 def prune(df):
-    #remvoe in Close the NaN values
+    # remvoe in Close the NaN values
     return df.dropna(subset=["Close"])
