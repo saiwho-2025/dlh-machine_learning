@@ -3,5 +3,5 @@
 
 
 def high(df):
-     #sort in desending order High
+     """Return the DataFrame sorted by High in descending order."""
      return df.sort_values(by="High", ascending=False)
