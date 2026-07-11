@@ -4,7 +4,7 @@
 
 def fill(df):
     """edit the pd.DataFrame following requirements"""
-    df.drop(column = "Weighted_Price")
+    df.drop(column = ["Weighted_Price"])
     df["Close"] = df["Close"].ffill()
 
     df["High"] = df["High"].fillna(df["Close"])
