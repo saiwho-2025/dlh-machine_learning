@@ -3,4 +3,5 @@
 
 
 def analyze(df):
+    """calculate except 1 column"""
     return df.drop(columns=["Timestamp"]).describe()
