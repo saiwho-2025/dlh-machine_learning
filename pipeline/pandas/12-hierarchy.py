@@ -6,6 +6,7 @@ index = __import__('10-index').index
 
 
 def hierarchy(df1, df2):
+    """layers and order the work based on previous work"""
     df1 = index(df1)
     df2 = index(df2)
 
