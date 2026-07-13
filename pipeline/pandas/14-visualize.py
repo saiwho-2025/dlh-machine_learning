@@ -1,41 +1,39 @@
 #!/usr/bin/env python3
-"""compute and plot a pd.DataFrame"""
+"""Compute and plot a pd.DataFrame"""
 
 import pandas as pd
 import matplotlib.pyplot as plt
 
+df = pd.read_csv('coinbaseUSD_1-min_data_2014-12-01_to_2019-01-09.csv')
 
-def visualize(df):
-    """Clean, transform, plot, and return the DataFrame."""
-    df = df.drop(columns=["Weighted_Price"])
+df = df.drop(columns=["Weighted_Price"])
+df = df.rename(columns={"Timestamp": "Date"})
 
-    df = df.rename(columns={"Timestamp": "Date"})
+df["Date"] = pd.to_datetime(df["Date"], unit="s")
+df = df.set_index("Date")
+df = df.sort_index()
 
-    df["Date"] = pd.to_datetime(df["Date"], unit="s")
+df["Close"] = df["Close"].ffill()
 
-    df = df.set_index("Date")
+df["High"] = df["High"].fillna(df["Close"])
+df["Low"] = df["Low"].fillna(df["Close"])
+df["Open"] = df["Open"].fillna(df["Close"])
 
-    df["Close"] = df["Close"].ffill()
+df["Volume_(BTC)"] = df["Volume_(BTC)"].fillna(0)
+df["Volume_(Currency)"] = df["Volume_(Currency)"].fillna(0)
 
-    df["High"] = df["High"].fillna(df["Close"])
-    df["Low"] = df["Low"].fillna(df["Close"])
-    df["Open"] = df["Open"].fillna(df["Close"])
+df = df.loc["2017":]
 
-    df["Volume_(BTC)"] = df["Volume_(BTC)"].fillna(0)
-    df["Volume_(Currency)"] = df["Volume_(Currency)"].fillna(0)
+df = df.resample("D").agg({
+    "High": "max",
+    "Low": "min",
+    "Open": "mean",
+    "Close": "mean",
+    "Volume_(BTC)": "sum",
+    "Volume_(Currency)": "sum"
+})
 
-    df = df["2017":]
+df.plot()
+plt.show()
 
-    df = df.resample("D").agg({
-        "High": "max",
-        "Low": "min",
-        "Open": "mean",
-        "Close": "mean",
-        "Volume_(BTC)": "sum",
-        "Volume_(Currency)": "sum"
-    })
-
-    df.plot()
-    plt.show()
-
-    return df
+print(df)
