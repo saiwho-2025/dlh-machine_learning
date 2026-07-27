@@ -1,0 +1,7 @@
+clustering exercises
+
+meaning:
+
+method:
+
+
