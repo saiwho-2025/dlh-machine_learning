@@ -2,7 +2,7 @@
 """this module initializes cluster centroids for K-means"""
 
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 def initialize(X, k):
     """
