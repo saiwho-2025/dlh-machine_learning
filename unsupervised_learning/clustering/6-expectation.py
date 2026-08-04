@@ -24,6 +24,8 @@ def expectation(X, pi, m, S):
     # Validate X.
     if not isinstance(X, np.ndarray) or X.ndim != 2:
         return None, None
+    if not np.issubdtype(X.dtype, np.number) or not np.all(np.isfinite(X)):
+        return None, None
 
     # Validate pi.
     if not isinstance(pi, np.ndarray) or pi.ndim != 1:
@@ -32,9 +34,13 @@ def expectation(X, pi, m, S):
     # Validate m.
     if not isinstance(m, np.ndarray) or m.ndim != 2:
         return None, None
+    if not np.issubdtype(m.dtype, np.number) or not np.all(np.isfinite(m)):
+        return None, None
 
     # Validate S.
     if not isinstance(S, np.ndarray) or S.ndim != 3:
+        return None, None
+    if not np.issubdtype(S.dtype, np.number) or not np.all(np.isfinite(S)):
         return None, None
 
     # Read the data dimensions.
@@ -61,6 +67,10 @@ def expectation(X, pi, m, S):
 
     # Check that all priors are finite and nonnegative.
     if not np.all(np.isfinite(pi)) or np.any(pi < 0):
+        return None, None
+
+    # Check that the covariance matrices are symmetric.
+    if not np.allclose(S, np.swapaxes(S, 1, 2)):
         return None, None
 
     # Check that the priors sum to one.
@@ -90,10 +100,10 @@ def expectation(X, pi, m, S):
         return None, None
 
     # Calculate the total log likelihood.
-    l = np.sum(np.log(totals))
+    log = float(np.sum(np.log(totals)))
 
     # Normalize the weighted densities.
     g = g / totals
 
     # Return the posterior probabilities and log likelihood.
-    return g, l
+    return g, log
