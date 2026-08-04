@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Initialize centroids for K-means clustering."""
 
 # Import NumPy for array operations and random number generation.
