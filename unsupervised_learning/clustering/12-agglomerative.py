@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def agglomerative(X, dist):
     """
-    Cluster a dataset using Ward linkage.
+    Perform agglomerative clustering using Ward linkage.
 
     Args:
         X: Dataset with shape (n, d).
@@ -16,27 +16,27 @@ def agglomerative(X, dist):
     Returns:
         Cluster assignments with shape (n,).
     """
-    # Calculate the Ward linkage matrix.
+    # Calculate the hierarchical linkage matrix.
     linkage = scipy.cluster.hierarchy.linkage(
         X,
         method='ward'
     )
 
-    # Assign points using the distance threshold.
+    # Assign each point to a cluster.
     clss = scipy.cluster.hierarchy.fcluster(
         linkage,
         t=dist,
         criterion='distance'
     )
 
-    # Display the dendrogram.
+    # Draw the color-coded dendrogram.
     scipy.cluster.hierarchy.dendrogram(
         linkage,
         color_threshold=dist
     )
 
-    # Show Figure 1.
+    # Display the dendrogram as Figure 1.
     plt.show()
 
-    # Return labels used to create Figure 2.
+    # Return labels used by the main file.
     return clss
