@@ -32,7 +32,7 @@ def expectation_maximization(
         verbose: Boolean controlling likelihood output.
 
     Returns:
-        pi, m, S, g, and l, or five None values on failure.
+        pi, m, S, g, and log, or five None values on failure.
     """
     # Validate X.
     if not isinstance(X, np.ndarray) or X.ndim != 2:
@@ -73,10 +73,10 @@ def expectation_maximization(
         return None, None, None, None, None
 
     # Run the initial expectation step.
-    g, l = expectation(X, pi, m, S)
+    g, log = expectation(X, pi, m, S)
 
     # Check the initial expectation output.
-    if g is None or l is None:
+    if g is None or log is None:
         return None, None, None, None, None
 
     # Display the initial likelihood when requested.
@@ -86,7 +86,7 @@ def expectation_maximization(
     # Run each EM update.
     for iteration in range(1, iterations + 1):
         # Save the current likelihood.
-        previous_l = l
+        previous_log = log
 
         # Update the model variables.
         pi, m, S = maximization(X, g)
@@ -96,10 +96,10 @@ def expectation_maximization(
             return None, None, None, None, None
 
         # Recalculate the probabilities and likelihood.
-        g, l = expectation(X, pi, m, S)
+        g, log = expectation(X, pi, m, S)
 
         # Check the expectation output.
-        if g is None or l is None:
+        if g is None or log is None:
             return None, None, None, None, None
 
         # Calculate the likelihood change.
@@ -127,4 +127,4 @@ def expectation_maximization(
             break
 
 # Return the final model with a NumPy likelihood scalar.
-    return pi, m, S, g, np.float64(l)
+    return pi, m, S, g, np.float64(log)
