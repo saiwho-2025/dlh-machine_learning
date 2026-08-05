@@ -126,5 +126,5 @@ def expectation_maximization(
         if converged:
             break
 
-    # Return the completed model.
-    return pi, m, S, g, l
+# Return the final model with a NumPy likelihood scalar.
+    return pi, m, S, g, np.float64(l)
