@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run expectation maximization on a Gaussian mixture model."""
+"""Run EM on a Gaussian mixture model."""
 
 # Import NumPy to validate the data set.
 import numpy as np
@@ -22,17 +22,17 @@ def expectation_maximization(
     verbose=False
 ):
     """
-    Run the EM algorithm on a Gaussian mixture model.
+    Run expectation maximization on a GMM.
 
     Args:
         X: NumPy array with shape (n, d).
         k: Positive cluster count.
         iterations: Maximum update count.
         tol: Nonnegative convergence tolerance.
-        verbose: Boolean controlling likelihood output.
+        verbose: Enables progress output.
 
     Returns:
-        pi, m, S, g, and log, or five None values on failure.
+        Model parameters, responsibilities, and log likelihood.
     """
     # Validate X.
     if not isinstance(X, np.ndarray) or X.ndim != 2:
@@ -65,50 +65,55 @@ def expectation_maximization(
     if not isinstance(verbose, bool):
         return None, None, None, None, None
 
-    # Initialize the model variables.
+    # Initialize the model parameters.
     pi, m, S = initialize(X, k)
 
-    # Check the initialization output.
+    # Check the initialization result.
     if pi is None or m is None or S is None:
         return None, None, None, None, None
 
-    # Run the initial expectation step.
-    g, log = expectation(X, pi, m, S)
+    # Calculate the initial expectation step.
+    g, log_likelihood = expectation(X, pi, m, S)
 
-    # Check the initial expectation output.
-    if g is None or log is None:
+    # Check the expectation result.
+    if g is None or log_likelihood is None:
         return None, None, None, None, None
 
-    # Display the initial likelihood when requested.
+    # Display the initial value when requested.
     if verbose:
-        print(f"Log Likelihood after 0 iterations: {l:.5f}")
+        print(
+            "Log Likelihood after 0 iterations: "
+            f"{log_likelihood:.5f}"
+        )
 
-    # Run each EM update.
+    # Execute the EM updates.
     for iteration in range(1, iterations + 1):
-        # Save the current likelihood.
-        previous_log = log
+        # Save the current log likelihood.
+        previous_log_likelihood = log_likelihood
 
-        # Update the model variables.
+        # Update the model parameters.
         pi, m, S = maximization(X, g)
 
-        # Check the maximization output.
+        # Check the maximization result.
         if pi is None or m is None or S is None:
             return None, None, None, None, None
 
-        # Recalculate the probabilities and likelihood.
-        g, log = expectation(X, pi, m, S)
+        # Recalculate responsibilities and likelihood.
+        g, log_likelihood = expectation(X, pi, m, S)
 
-        # Check the expectation output.
-        if g is None or log is None:
+        # Check the expectation result.
+        if g is None or log_likelihood is None:
             return None, None, None, None, None
 
-        # Calculate the likelihood change.
-        difference = abs(l - previous_l)
+        # Measure the likelihood change.
+        difference = abs(
+            log_likelihood - previous_log_likelihood
+        )
 
-        # Determine whether the algorithm has converged.
+        # Check convergence.
         converged = difference <= tol
 
-        # Display each tenth step and the final step.
+        # Display each tenth update and the final update.
         if (
             verbose
             and (
@@ -119,12 +124,15 @@ def expectation_maximization(
         ):
             print(
                 f"Log Likelihood after {iteration} "
-                f"iterations: {l:.5f}"
+                f"iterations: {log_likelihood:.5f}"
             )
 
-        # Stop when the likelihood change is small enough.
+        # Stop at convergence.
         if converged:
             break
 
-# Return the final model with a NumPy likelihood scalar.
-    return pi, m, S, g, np.float64(log)
+    # Keep the return value compatible with NumPy rounding.
+    log_likelihood = np.float64(log_likelihood)
+
+    # Return the completed model.
+    return pi, m, S, g, log_likelihood
