@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-"""Select a GMM cluster count using BIC."""
+"""Select a Gaussian mixture model using BIC."""
 
 # Import NumPy to handle numerical arrays.
 import numpy as np
 
 # Load the required EM function.
-expectation_maximization = __import__(
-    '8-EM'
-).expectation_maximization
+expectation_maximization = __import__('8-EM').expectation_maximization
 
 
 def BIC(
@@ -30,7 +28,7 @@ def BIC(
         verbose: Boolean controlling EM output.
 
     Returns:
-        Best cluster count, model, likelihoods, and BIC values.
+        best_k, best_result, l, and b.
     """
     # Validate X.
     if not isinstance(X, np.ndarray) or X.ndim != 2:
@@ -51,7 +49,7 @@ def BIC(
     ):
         return None, None, None, None
 
-    # Use the point count when kmax is omitted.
+    # Use the data-point count when kmax is omitted.
     if kmax is None:
         kmax = n
 
@@ -63,8 +61,8 @@ def BIC(
     ):
         return None, None, None, None
 
-    # Validate the cluster-count interval.
-    if kmax < kmin:
+    # Require at least two cluster counts.
+    if kmax <= kmin:
         return None, None, None, None
 
     # Validate iterations.
@@ -83,68 +81,66 @@ def BIC(
     if not isinstance(verbose, bool):
         return None, None, None, None
 
-    # Calculate the number of tested cluster counts.
-    count = kmax - kmin + 1
+    # Calculate the output size.
+    size = kmax - kmin + 1
 
-    # Create the likelihood output array.
-    l = np.empty(count)
+    # Create the likelihood array.
+    l = np.zeros(size)
 
-    # Create the BIC output array.
-    b = np.empty(count)
+    # Create the BIC array.
+    b = np.zeros(size)
 
-    # Create storage holding each fitted model.
+    # Create storage holding each model.
     results = []
 
     # Test each cluster count.
-    for index, cluster_count in enumerate(
-        range(kmin, kmax + 1)
-    ):
+    for index, clusters in enumerate(range(kmin, kmax + 1)):
         # Run expectation maximization.
-        pi, m, S, g, log_likelihood = expectation_maximization(
+        pi, m, S, g, likelihood = expectation_maximization(
             X,
-            cluster_count,
+            clusters,
             iterations,
             tol,
             verbose
         )
 
-        # Check the EM output.
+        # Check the EM result.
         if (
             pi is None
             or m is None
             or S is None
             or g is None
-            or log_likelihood is None
+            or likelihood is None
         ):
             return None, None, None, None
 
-        # Save the current log likelihood.
-        l[index] = log_likelihood
+        # Save the likelihood.
+        l[index] = likelihood
 
-        # Count the independent model parameters.
+        # Calculate the parameter count.
         parameters = (
-            cluster_count - 1
-            + cluster_count * d
-            + cluster_count * d * (d + 1) // 2
+            clusters - 1
+            + clusters * d
+            + clusters * d * (d + 1) // 2
         )
 
-        # Calculate and save the current BIC value.
+        # Calculate the BIC value.
         b[index] = (
             parameters * np.log(n)
-            - 2 * log_likelihood
+            - 2 * likelihood
         )
 
-        # Save the current priors, means, and covariances.
+        # Save the current model.
         results.append((pi, m, S))
 
     # Locate the smallest BIC value.
-    best_index = int(np.argmin(b))
+    best_index = np.argmin(b)
 
-    # Convert the array index into a cluster count.
+    # Calculate the best cluster count.
     best_k = kmin + best_index
 
-    # Select the corresponding model.
+    # Select the best model.
     best_result = results[best_index]
 
-    # Return the best model and all measurements.
+    # Return the selection and measurements.
     return best_k, best_result, l, b
