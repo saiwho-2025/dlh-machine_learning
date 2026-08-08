@@ -8,7 +8,7 @@ class Neuron:
     """Defines a single neuron for binary classification."""
 
 
-def _init_(self, nx):
+def __init__(self, nx):
     """arg: nx is the number of input features to the neuron
             publice instance attributes:
             w is the weight vector for the neuron, initialized using a random normal distribution
