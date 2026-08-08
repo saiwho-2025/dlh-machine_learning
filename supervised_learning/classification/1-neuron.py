@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
-"""defines a single neuron for binary classification"""
+"""Defines a single neuron for binary classification."""
 
 import numpy as np
 
 
 class Neuron:
-    """Defines a single neuron for binary classification."""
+    """Represents a single neuron for binary classification."""
 
     def __init__(self, nx):
         """Initialize a neuron with nx input features."""
         if not isinstance(nx, int):
-            raise TypeError("nx must be a integer")
+            raise TypeError("nx must be an integer")
+
         if nx < 1:
             raise ValueError("nx must be a positive integer")
 
-        self.__W = np.random.normal(size=(1, nx))
+        self.__W = np.random.randn(1, nx)
         self.__b = 0
         self.__A = 0
 
