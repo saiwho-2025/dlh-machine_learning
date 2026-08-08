@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """this module defines a single neuron performing binary classification using OOP"""
 
+import numpy as np
+
+class Neuron:
+    """Defines a single neuron for binary classification."""
+
 
 def _init_(self,nx):
     """arg: nx is the number of input features to the neuron
