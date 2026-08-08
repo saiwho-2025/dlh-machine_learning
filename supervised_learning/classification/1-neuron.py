@@ -16,10 +16,25 @@ class Neuron:
             A is the activated output of the neuron(prediction),
             initialized to 0"""
         if not isinstance(nx, int):
-            raise TypeError("nx must be an integer")
+            raise TypeError("nx must be a integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
 
         self.__W = np.random.normal(size=(1, nx))
         self.__b = 0
         self.__A = 0
+
+    @property
+    def W(self):
+        """Return the neuron's weights vector."""
+        return self.__W
+
+    @property
+    def b(self):
+        """Return the neuron's bias."""
+        return self.__b
+
+    @property
+    def A(self):
+        """Return the neuron's activated output."""
+        return self.__A
