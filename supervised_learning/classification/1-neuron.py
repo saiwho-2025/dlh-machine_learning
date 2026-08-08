@@ -8,13 +8,7 @@ class Neuron:
     """Defines a single neuron for binary classification."""
 
     def __init__(self, nx):
-        """arg: nx is the number of input features to the neuron
-            publice instance attributes:
-            w is the weight vector for the neuron,
-            initialized using a random normal distribution
-            b is the bias for the neuron, initialized to 0
-            A is the activated output of the neuron(prediction),
-            initialized to 0"""
+        """Initialize a neuron with nx input features."""
         if not isinstance(nx, int):
             raise TypeError("nx must be a integer")
         if nx < 1:
