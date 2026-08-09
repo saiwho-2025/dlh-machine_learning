@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Defines a deep neural network for binary classification."""
+"""Defines a deep neural network."""
 
 import pickle
 import numpy as np
@@ -9,12 +9,19 @@ import matplotlib.pyplot as plt
 class DeepNeuralNetwork:
     """Represents a deep neural network."""
 
-    # Keep your existing methods here:
-    # __init__, properties, forward_prop, cost,
-    # evaluate, gradient_descent and train.
+    def __init__(self, nx, layers):
+        # Existing constructor from 23-deep_neural_network.py
+        pass
+
+    # Keep all existing properties and methods:
+    # forward_prop
+    # cost
+    # evaluate
+    # gradient_descent
+    # train
 
     def save(self, filename):
-        """Save the deep neural network to a pickle file."""
+        """Save the network in pickle format."""
         if not filename.endswith(".pkl"):
             filename += ".pkl"
 
