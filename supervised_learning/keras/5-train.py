@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Trains a neural network and analyzes validation data."""
 
+import tensorflow.keras as K
+
 
 def train_model(network, data, labels, batch_size, epochs,
                 validation_data=None, verbose=True, shuffle=False):
