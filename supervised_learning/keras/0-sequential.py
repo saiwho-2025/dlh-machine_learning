@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""neural network story with Keras"""
 
 import tensorflow.keras as K
 
