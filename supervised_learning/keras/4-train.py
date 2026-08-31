@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Trains a neural network using mini-batch gradient descent."""
 
+
 def train_model(network, data, labels, batch_size, epochs,
                 verbose=True, shuffle=False):
     """Trains the model and returns the History object."""
