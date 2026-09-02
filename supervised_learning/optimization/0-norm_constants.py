@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""calculate the normalization constants of a matrix"""
+
 import numpy as np
 
 
