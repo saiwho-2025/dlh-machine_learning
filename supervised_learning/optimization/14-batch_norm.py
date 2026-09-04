@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+"""normalize in tensorflow"""
 import tensorflow as tf
+
 
 def create_batch_norm_layer(prev, n, activation):
     # Create the dense layer with the specified kernel initializer
