@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Z_norm to batch normalize the output"""
 import numpy as np
 
 
