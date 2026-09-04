@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """this module calculates the weighted moving average of a data set"""
+
 import numpy  as np
 
 
