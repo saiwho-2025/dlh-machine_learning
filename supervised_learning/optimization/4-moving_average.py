@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """this module calculates the weighted moving average of a data set"""
-
 import numpy  as np
 
 
 def moving_average(data,beta):
-    """args:
+    """this module trains by the weighted moving average
+    args:
         data: list of data to calculate the moving average 
         beta: the weight used for the moving average"""
     averages = []
