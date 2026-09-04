@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """mini-batches for gradient descent for a neural network training"""
-
 import numpy as np
 
 
