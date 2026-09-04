@@ -14,7 +14,7 @@ def moving_average(data,beta):
     v =  0
 
     for t, value in enumerate(data,1):
-        v = beta *v + (1- beta) * value
+        v = beta * v + (1- beta) * value
         v_corrected = v / (1- beta ** t)
         averages.append(v_corrected)
 
