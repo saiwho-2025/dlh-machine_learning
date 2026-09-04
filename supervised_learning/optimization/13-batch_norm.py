@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import numpy as np
 
+
 def batch_norm(Z, gamma, beta, epsilon):
     """
     batch normalization an unactivated output of a neural network.
