@@ -23,4 +23,3 @@ def sensitivity(confusion):
 
     # Calculate sensitivity for each class.
     return true_positives / actual
-
