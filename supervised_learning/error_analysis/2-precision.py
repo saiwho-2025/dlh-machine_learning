@@ -3,6 +3,7 @@
 
 import numpy as np
 
+
 def precision(confusion):
     """Calculates the precision for each class.
     Args:
@@ -22,4 +23,3 @@ def precision(confusion):
 
     # Calculate precision for each class.
     return true_positives / predicted
-
