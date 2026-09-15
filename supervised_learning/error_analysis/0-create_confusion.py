@@ -28,7 +28,7 @@ def create_confusion_matrix(labels, logits):
     classes = labels.shape[1]
 
     # Create an empty confusion matrix.
-    confusion = np.zeros((classes, classes), dtype=int)
+    confusion = np.zeros((classes, classes))
 
     # Count each correct/predicted label combination.
     for correct_label, predicted_label in zip(correct, predicted):
