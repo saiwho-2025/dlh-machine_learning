@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+"""L2 regularization cost module."""
+
+import tensorflow as tf
+
+
+def l2_reg_cost(cost, model):
+    """Calculates the cost of a neural network with L2 regularization."""
+    return cost + tf.reduce_sum(model.losses)
