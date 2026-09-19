@@ -6,7 +6,7 @@ import numpy as np
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     """Conducts forward propagation using Dropout."""
-    cache = {}
+    cache = {"A0": X}
 
     A = X
 
@@ -24,12 +24,9 @@ def dropout_forward_prop(X, weights, L, keep_prob):
             # Tanh for hidden layers
             A = np.tanh(Z)
 
-            # Dropout mask
+            # Dropout
             D = np.random.binomial(1, keep_prob, size=A.shape)
-
-            # Inverted dropout
-            A = A * D
-            A = A / keep_prob
+            A = A * D / keep_prob
 
             cache["D{}".format(layer)] = D
 
