@@ -32,7 +32,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     else:
         raise ValueError("padding must be 'same' or 'valid'")
 
-    # Pad the input with zeros.
+    # Pad the input.
     A_pad = np.pad(
         A_prev,
         (
@@ -44,7 +44,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
         mode="constant"
     )
 
-    # Initialize the convolution output.
+    # Initialize the output.
     Z = np.zeros((m, h_new, w_new, c_new))
 
     # Perform the convolution.
@@ -55,15 +55,17 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
             w_start = j * sw
             w_end = w_start + kw
 
-            # Extract the current slice from the padded input.
-            window = A_pad[:, h_start:h_end, w_start:w_end, :]
+            a_slice = A_pad[:, h_start:h_end, w_start:w_end, :]
 
-            # Apply all filters to the current slice.
-            Z[:, i, j, :] = np.tensordot(
-                window,
-                W,
-                axes=([1, 2, 3], [0, 1, 2])
-            ) + b.reshape(1, c_new)
+            for k in range(c_new):
+                Z[:, i, j, k] = (
+                    np.sum(
+                        a_slice * W[:, :, :, k],
+                        axis=(1, 2, 3)
+                    ) + b[0, 0, 0, k]
+                )
 
     # Apply the activation function.
-    return activation(Z)
+    A = activation(Z)
+
+    return A
