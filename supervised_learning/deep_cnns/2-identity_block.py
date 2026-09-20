@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds an identity block for a ResNet."""
 
-import tensorflow.keras as K
+from tensorflow import keras as K
 
 
 def identity_block(A_prev, filters):
