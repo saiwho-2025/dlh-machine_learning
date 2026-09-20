@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+"""This module changes the hue of an image."""
+
+import tensorflow as tf
+
+
+def change_hue(image, delta):
+    """Change the hue of an image."""
+    return tf.image.adjust_hue(image, delta)
