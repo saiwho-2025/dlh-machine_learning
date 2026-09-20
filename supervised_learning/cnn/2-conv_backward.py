@@ -11,36 +11,23 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     kh, kw, _, _ = W.shape
     sh, sw = stride
 
+    # Calculate the padding.
     if padding == "same":
-        pad_h = max((h_new - 1) * sh + kh - h_prev, 0)
-        pad_w = max((w_new - 1) * sw + kw - w_prev, 0)
-
-        pad_top = pad_h // 2
-        pad_bottom = pad_h - pad_top
-        pad_left = pad_w // 2
-        pad_right = pad_w - pad_left
-    elif padding == "valid":
-        pad_top = 0
-        pad_bottom = 0
-        pad_left = 0
-        pad_right = 0
+        ph = ((h_prev - 1) * sh + kh - h_prev) // 2 + 1
+        pw = ((w_prev - 1) * sw + kw - w_prev) // 2 + 1
     else:
-        raise ValueError("padding must be 'same' or 'valid'")
+        ph = 0
+        pw = 0
 
-    # Pad the previous layer and its gradient.
+    # Pad the previous layer.
     A_prev_pad = np.pad(
         A_prev,
-        (
-            (0, 0),
-            (pad_top, pad_bottom),
-            (pad_left, pad_right),
-            (0, 0)
-        ),
+        ((0, 0), (ph, ph), (pw, pw), (0, 0)),
         mode="constant"
     )
-    dA_prev_pad = np.zeros_like(A_prev_pad)
 
-    # Initialize gradients for the kernels and biases.
+    # Initialize the gradients.
+    dA_prev_pad = np.zeros_like(A_prev_pad)
     dW = np.zeros_like(W)
     db = np.zeros_like(b)
 
@@ -73,12 +60,12 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                     dW[:, :, :, c] += a_slice * dz
                     db[:, :, :, c] += dz
 
-    # Remove padding from the gradient of the previous layer.
+    # Remove the padding.
     if padding == "same":
         dA_prev = dA_prev_pad[
             :,
-            pad_top:pad_top + h_prev,
-            pad_left:pad_left + w_prev,
+            ph:ph + h_prev,
+            pw:pw + w_prev,
             :
         ]
     else:
