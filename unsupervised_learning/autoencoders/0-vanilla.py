@@ -22,7 +22,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
 
     latent = K.layers.Dense(latent_dims, activation='relu')(x)
     encoder = K.Model(inputs=inputs, outputs=latent)
-  
+
     # Decoder
     latent_inputs = K.Input(shape=(latent_dims,))
     x = latent_inputs
