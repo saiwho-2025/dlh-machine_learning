@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""this module creates an autoencoder with relu for (n-1) layers of activation, n layer sigmoid"""
+"""this module creates an autoencoder with relu and sigmold for activation"""
 import tensorflow.keras as keras
 
 
