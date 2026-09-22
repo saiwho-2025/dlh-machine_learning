@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-
-import tensorflow as tf
+"""this module creates a vanille autoencoder"""
+import tensorflow.keras as K
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
