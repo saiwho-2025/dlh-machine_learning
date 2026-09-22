@@ -7,7 +7,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     """an autoencoder that returns encoder, decorder and auto
         arguments:
         input_dims: an integer containing the dimensions of the model input
-        hidden_layers: a list containing the number of hidden layer nodes 
+        hidden_layers: a list containing the number of hidden layer nodes
         latent_dims: an integer containing the dimensions of the latent space
         returns:
         encoder: the encoder model
