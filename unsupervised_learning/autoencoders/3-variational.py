@@ -16,18 +16,17 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     Returns:
         tuple: The encoder, decoder, and autoencoder models.
     """
-    # Create encoder input
+    # Build the encoder
     encoder_input = keras.Input(shape=(input_dims,))
     encoded = encoder_input
 
-    # Create encoder hidden layers
     for nodes in hidden_layers:
         encoded = keras.layers.Dense(
             nodes,
             activation="relu"
         )(encoded)
 
-    # Create mean and log variance layers
+    # Create mean and log variance
     mean = keras.layers.Dense(
         latent_dims,
         activation=None
@@ -46,42 +45,38 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         )
         return mean + keras.backend.exp(log_var / 2) * epsilon
 
-    # Create latent representation
+    # Create the latent representation
     latent = keras.layers.Lambda(
         sampling,
         output_shape=(latent_dims,)
     )([mean, log_var])
 
-    # Create encoder model
     encoder = keras.Model(
         inputs=encoder_input,
         outputs=[latent, mean, log_var]
     )
 
-    # Create decoder input
+    # Build the decoder
     decoder_input = keras.Input(shape=(latent_dims,))
     decoded = decoder_input
 
-    # Create decoder hidden layers
     for nodes in reversed(hidden_layers):
         decoded = keras.layers.Dense(
             nodes,
             activation="relu"
         )(decoded)
 
-    # Create decoder output
     decoder_output = keras.layers.Dense(
         input_dims,
         activation="sigmoid"
     )(decoded)
 
-    # Create decoder model
     decoder = keras.Model(
         inputs=decoder_input,
         outputs=decoder_output
     )
 
-    # Create full autoencoder
+    # Build the complete autoencoder
     encoded_output = encoder(encoder_input)[0]
     auto_output = decoder(encoded_output)
 
@@ -90,10 +85,10 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         outputs=auto_output
     )
 
-    # Compile autoencoder
+    # Compile using Adam and binary cross-entropy
     auto.compile(
-        optimizer="adam",
-        loss=keras.losses.binary_crossentropy
+        optimizer=keras.optimizers.Adam(),
+        loss=keras.losses.BinaryCrossentropy()
     )
 
     return encoder, decoder, auto
