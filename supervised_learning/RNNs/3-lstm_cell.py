@@ -66,4 +66,3 @@ class LSTMCell:
         y = exp_z / np.sum(exp_z, axis=1, keepdims=True)
 
         return h_next, c_next, y
-    
