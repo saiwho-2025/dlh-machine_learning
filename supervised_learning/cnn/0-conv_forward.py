@@ -1,71 +1,17 @@
-#!/usr/bin/env python3
-"""Convolutional layer forward propagation."""
-
-import numpy as np
-
-
-def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
-    """Perform forward propagation over a convolutional layer."""
-    m, h_prev, w_prev, _ = A_prev.shape
-    kh, kw, _, c_new = W.shape
-    sh, sw = stride
-
     if padding == "same":
-        h_new = int(np.ceil(h_prev / sh))
-        w_new = int(np.ceil(w_prev / sw))
-
-        pad_h = max((h_new - 1) * sh + kh - h_prev, 0)
-        pad_w = max((w_new - 1) * sw + kw - w_prev, 0)
-
-        pad_top = pad_h // 2
-        pad_bottom = pad_h - pad_top
-        pad_left = pad_w // 2
-        pad_right = pad_w - pad_left
+        ph = int(np.ceil(((h_prev - 1) * sh + kh - h_prev) / 2))
+        pw = int(np.ceil(((w_prev - 1) * sw + kw - w_prev) / 2))
     elif padding == "valid":
-        pad_top = 0
-        pad_bottom = 0
-        pad_left = 0
-        pad_right = 0
-
-        h_new = (h_prev - kh) // sh + 1
-        w_new = (w_prev - kw) // sw + 1
+        ph = 0
+        pw = 0
     else:
         raise ValueError("padding must be 'same' or 'valid'")
 
-    # Pad the input.
+    h_new = (h_prev + 2 * ph - kh) // sh + 1
+    w_new = (w_prev + 2 * pw - kw) // sw + 1
+
     A_pad = np.pad(
         A_prev,
-        (
-            (0, 0),
-            (pad_top, pad_bottom),
-            (pad_left, pad_right),
-            (0, 0)
-        ),
+        ((0, 0), (ph, ph), (pw, pw), (0, 0)),
         mode="constant"
     )
-
-    # Initialize the output.
-    Z = np.zeros((m, h_new, w_new, c_new))
-
-    # Perform the convolution.
-    for i in range(h_new):
-        for j in range(w_new):
-            h_start = i * sh
-            h_end = h_start + kh
-            w_start = j * sw
-            w_end = w_start + kw
-
-            a_slice = A_pad[:, h_start:h_end, w_start:w_end, :]
-
-            for k in range(c_new):
-                Z[:, i, j, k] = (
-                    np.sum(
-                        a_slice * W[:, :, :, k],
-                        axis=(1, 2, 3)
-                    ) + b[0, 0, 0, k]
-                )
-
-    # Apply the activation function.
-    A = activation(Z)
-
-    return A
