@@ -72,4 +72,3 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         output = self.linear(concat)
 
         return output, weights
-    
