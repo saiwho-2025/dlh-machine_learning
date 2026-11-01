@@ -8,13 +8,13 @@ import numpy as np
 
 
 def bag_of_words(sentences, vocab=None):
-    """Return a word-count matrix and its column labels.
+    """Return word counts and a NumPy array of feature names.
 
-    Match words case-insensitively. Use the supplied vocabulary order,
-    or sort the observed words alphabetically when building a vocabulary.
+    Match words of at least two characters case-insensitively.
+    Preserve the supplied vocabulary order, or sort observed words.
     """
     counts = [
-        Counter(re.findall(r"\w+", sentence.lower()))
+        Counter(re.findall(r"\b\w\w+\b", sentence.lower()))
         for sentence in sentences
     ]
 
@@ -27,3 +27,5 @@ def bag_of_words(sentences, vocab=None):
     embeddings = np.zeros((len(sentences), len(features)), dtype=int)
     for i, row in enumerate(counts):
         embeddings[i] = [row[word] for word in keys]
+
+    return embeddings, np.array(features, dtype=str)
