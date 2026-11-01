@@ -1,4 +1,5 @@
 Embedding for word tokenization and computation
+
 What is natural language processing?
 What is a word embedding?
 What is bag of words?
