@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""this module calculates the positional encoding for a transformer"""
+
 import numpy as np
 
 
